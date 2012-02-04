@@ -19,6 +19,12 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe NumbersController do
+  describe "GET new" do
+    it "assigns a new number as @number" do
+      get :new
+      assigns(:number).should be_a_new(Number)
+    end
+  end  
 
   describe "GET convert" do
     describe "with valid params" do
