@@ -33,9 +33,7 @@ class NumbersController < ApplicationController
   end
   
   def convert
-    @number = Number.new
-    debugger
-    @number.number = 12
+    @number = Number.new(params[:number])
   end
 
   # GET /numbers/1/edit
