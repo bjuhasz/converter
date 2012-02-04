@@ -1,5 +1,6 @@
 
-Given /^I go to the new number page$/ do
+Given /^I go to (.+)$/ do |page_name|
+  visit path_to(page_name)
 end
 
 Given /^I fill in "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
