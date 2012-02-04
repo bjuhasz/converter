@@ -1,4 +1,6 @@
 class Number < ActiveRecord::Base
+  validates :number, :presence => true
+  validates :number, :numericality => { :only_integer => true }
   
   def converted_number
     # Timothy Byrd's solution, which can be found at: 
