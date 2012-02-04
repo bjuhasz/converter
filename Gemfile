@@ -40,5 +40,9 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'thin'
   gem 'rspec-rails', '~> 2.6'
+  
+  gem 'capybara'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
