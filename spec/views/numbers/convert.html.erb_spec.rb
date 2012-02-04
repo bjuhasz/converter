@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "numbers/convert" do
   before(:each) do
     @number = assign(:number, stub_model(Number,
-      :number => 1
+      :number => 12, :converted_number => 'twelve',
     ))
   end
 
