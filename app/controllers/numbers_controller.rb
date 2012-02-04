@@ -34,6 +34,7 @@ class NumbersController < ApplicationController
   
   def convert
     @number = Number.new
+    debugger
     @number.number = 12
   end
 

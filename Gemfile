@@ -49,5 +49,7 @@ group :development, :test do
   
   gem 'guard-rspec'
   gem 'guard-cucumber'
+  
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
