@@ -33,6 +33,7 @@ class NumbersController < ApplicationController
   end
   
   def convert
+    @number = Number.new
   end
 
   # GET /numbers/1/edit
