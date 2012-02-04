@@ -1,0 +1,7 @@
+    numbers GET    /numbers(.:format)          numbers#index
+            POST   /numbers(.:format)          numbers#create
+ new_number GET    /numbers/new(.:format)      numbers#new
+edit_number GET    /numbers/:id/edit(.:format) numbers#edit
+     number GET    /numbers/:id(.:format)      numbers#show
+            PUT    /numbers/:id(.:format)      numbers#update
+            DELETE /numbers/:id(.:format)      numbers#destroy

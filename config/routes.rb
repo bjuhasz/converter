@@ -1,6 +1,7 @@
 Converter::Application.routes.draw do
-  resources :numbers
-
+  #resources :numbers
+  get 'numbers/new'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
