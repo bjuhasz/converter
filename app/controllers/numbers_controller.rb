@@ -34,6 +34,7 @@ class NumbersController < ApplicationController
   
   def convert
     @number = Number.new
+    @number.number = 12
   end
 
   # GET /numbers/1/edit
