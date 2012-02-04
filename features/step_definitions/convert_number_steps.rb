@@ -11,8 +11,8 @@ When /^I press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
-Then /^I should be on the converted number page$/ do
-  pending # express the regexp above with the code you wish you had
+Then /^I should be on (.+)$/ do |page_name|
+  URI.parse(current_url).path.should == path_to(page_name)
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
