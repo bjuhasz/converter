@@ -31,6 +31,9 @@ class NumbersController < ApplicationController
       format.json { render json: @number }
     end
   end
+  
+  def convert
+  end
 
   # GET /numbers/1/edit
   def edit
