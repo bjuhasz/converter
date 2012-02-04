@@ -44,5 +44,7 @@ group :development, :test do
   gem 'capybara'
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  
+  gem 'spork-rails'
 end
 
