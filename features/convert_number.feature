@@ -5,4 +5,5 @@ Feature: User can convert a number
     And I fill in "Number" with "12"
     When I press "Convert" 
     Then I should be on the converted number page
-    And I should see "twelve"
+    And I should see "Original number: 12"
+    And I should see "Converted number: twelve"
