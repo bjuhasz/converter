@@ -15,7 +15,7 @@ Then /^I should be on (.+)$/ do |page_name|
   URI.parse(current_url).path.should == path_to(page_name)
 end
 
-Then /^I should see "([^"]*)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^I should see "([^"]*)"$/ do |text|
+  page.should have_content(text)
 end
 
