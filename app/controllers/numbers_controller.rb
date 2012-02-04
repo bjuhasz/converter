@@ -34,6 +34,8 @@ class NumbersController < ApplicationController
   
   def convert
     @number = Number.new(params[:number])
+
+    render action: 'new' unless @number.valid?
   end
 
   # GET /numbers/1/edit

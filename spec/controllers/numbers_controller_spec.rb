@@ -20,26 +20,34 @@ require 'spec_helper'
 
 describe NumbersController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Number. As you add validations to Number, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
-  
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # NumbersController. Be sure to keep this updated too.
-  def valid_session
-    {}
-  end
-
   describe "GET convert" do
     describe "with valid params" do
+      before(:each) do
+        get :convert, {:number => {:number => '12'}}
+      end
+      
       it "assigns a newly created number as @number" do
-        get :convert, {:number => valid_attributes}, valid_session
         assigns(:number).should be_a(Number)
-        #assigns(:number).should be_persisted
+        assigns(:number).should be_a_new(Number)
+      end
+
+      it "renders the default template" do
+        response.should render_template('convert')
+      end
+    end
+
+    describe "with invalid params" do
+      before(:each) do
+        Number.any_instance.stub(:valid?).and_return(false)
+        get :convert, {:number => {}}
+      end
+      
+      it "assigns a newly created but unsaved number as @number" do
+        assigns(:number).should be_a_new(Number)
+      end
+
+      it "re-renders the 'new' template" do
+        response.should render_template('new')
       end
     end
   end
