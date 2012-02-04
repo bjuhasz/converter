@@ -9,7 +9,7 @@ module NavigationHelpers
     case page_name
     
     when /the new number page/
-      new_number_path
+      numbers_new_path
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
