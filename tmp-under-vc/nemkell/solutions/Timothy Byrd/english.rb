@@ -1,16 +1,3 @@
-class Number < ActiveRecord::Base
-  
-  def converted_number
-    EnglishNumerals.to_English(number)
-  end
-  
-  # Based on Timothy Byrd's solution, which can be found at: 
-  # http://www.rubyquiz.com/quiz25.html
-  
-  # A tobbi az vagy nem nineteen hundredot irt ki, 
-  # vagy nem hasznalta az "and" szocskat.
-end
-
 =begin
 While we normally write numbers using Arabic (or since Quiz #22,
 Roman) numerals, numbers can also be written out as English phrases.
@@ -190,5 +177,117 @@ module EnglishNumerals
 
         result.strip
     end
+
+    def self.to_American(val, include_and = true)
+        to_English(val, false, include_and)
+    end
+
+    def self.lowest_brute(val, eu_names)
+        lowStr = 'zero'
+        lowV = 0
+
+        (1..val).each { |v|
+
+            next if (v & 1) == 0
+
+            str = to_English(v, eu_names)
+            if str < lowStr then
+                lowV = v
+                lowStr = str
+            end
+            }
+
+        [ lowV, lowStr ]
+    end
+
+    def self.find_for_interval(val, exp, eu_names)
+
+        include_and = (0 == exp) # && false
+
+        lowStr = 'zero'
+        lowV = 0
+
+        if (exp <= 0) then
+            suffix = ''
+        elsif eu_names then
+            suffix = ' ' + EurExponents[exp]
+        else
+            suffix = ' ' + AmExponents[exp]
+        end
+
+        (1..val).each { |v|
+
+            # Only skip odd numbers if exp == 0
+            #
+            next if (0 == exp) && (v & 1) == 0
+
+            str = to_English(v, eu_names, include_and) + suffix
+            if str < lowStr then
+                lowV = v
+                lowStr = str
+            end
+            }
+
+        [ lowV, lowStr ]
+    end
+
+    def self.lowest_elegant(val, eu_names)
+
+        # get the first (exp == 0) interval
+        # smallest with 'and' in 1..999
+        # (cumulative answer)
+        #
+        exp = 0
+        interval_size = val < 1000 ? val : 999;
+        lowV, lowStr = find_for_interval(interval_size, exp, eu_names)
+
+        while (val = val / 1000) > 0
+
+            exp += 3
+
+            # intermediate interval to tack in front of number so far
+            #
+            interval_size = val < 1000 ? val : 999;
+            vInter, strInter =
+                    find_for_interval(interval_size, exp, eu_names)
+
+            str = strInter + ' ' + lowStr
+            if str < lowStr then
+                lowStr = str
+                lowV = lowV + (vInter * 10 ** exp)
+            end
+        end
+
+        [ lowV, lowStr ]
+    end
 end
 
+
+# If no argument, then work in interactive mode
+#
+if !ARGV[0] || ARGV[0].to_i == 0 then
+
+    $<.each_line { |line|
+         puts EnglishNumerals.to_English(line.chomp)
+         puts EnglishNumerals.to_American(line.chomp)
+    }
+
+else
+    val = ARGV[0].to_i
+
+    # Positive argument, try something clever...
+    #
+    if val > 0
+        vE, strE = EnglishNumerals.lowest_elegant(val, true)
+        vA, strA = EnglishNumerals.lowest_elegant(val, false)
+
+    # Negative argument, do a brute force solution
+    #
+    else
+        vE, strE = EnglishNumerals.lowest_brute(val.abs, true)
+        vA, strA = EnglishNumerals.lowest_brute(val.abs, false)
+    end
+
+    puts "E: #{vE} - #{strE}"
+    puts "A: #{vA} - #{strA}"
+end
