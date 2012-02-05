@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Original number:</b>
+  <%= @number.number %>
+</p>
+
+<p>
+  <b>Converted number:</b>
+  <%= @number.converted_number %>
+</p>
+
+<%= link_to 'Convert another one', numbers_new_path %>
+

@@ -9,7 +9,7 @@ class Number # < ActiveRecord::Base
   validates :number, :presence => true
   
   # TODO
-  # message talan jobb lenne i18n-nel(?), mert most furcsan nez ki az, hogy:
+  # message talan jobb lenne i18n-nel, mert most furcsan nez ki az, hogy:
   # Number : "1999dd" is not a number
   # talan szebb lenne ez:
   # The given input (1999dd) is not a number
@@ -24,7 +24,6 @@ class Number # < ActiveRecord::Base
     EnglishNumerals.to_English(number)
   end
   
-  # a lenti 3 fv. az "AR-nelkuliseg" miatt kell
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)

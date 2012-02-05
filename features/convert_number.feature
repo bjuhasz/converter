@@ -16,7 +16,7 @@ Feature: User can convert a number
     And I should see "Original number: 11"
     And I should see "Converted number: eleven"
     
-  Scenario: User converts a different number
+  Scenario: Flow
     Given I go to the root page
     And I fill in "Number" with "11asd"
     When I press "Convert" 
