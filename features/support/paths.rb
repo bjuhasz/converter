@@ -12,6 +12,8 @@ module NavigationHelpers
       numbers_new_path
     when /the converted number page/
       numbers_convert_path
+    when /the root page/
+      '/'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

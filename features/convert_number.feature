@@ -16,3 +16,19 @@ Feature: User can convert a number
     And I should see "Original number: 11"
     And I should see "Converted number: eleven"
     
+  Scenario: User converts a different number
+    Given I go to the root page
+    And I fill in "Number" with "11asd"
+    When I press "Convert" 
+    Then I should be on the converted number page
+    And I should see '"11asd" is not a number'
+    #
+    When I fill in "Number" with "11"
+    And I press "Convert" 
+    Then I should be on the converted number page
+    And I should see "Original number: 11"
+    And I should see "Converted number: eleven"
+    #
+    When I follow "Convert another one"
+    Then I should be on the new number page
+   
