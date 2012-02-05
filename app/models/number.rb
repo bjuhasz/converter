@@ -1,6 +1,5 @@
 class Number # < ActiveRecord::Base
-# http://railscasts.com/episodes/219-active-model?view=asciicast
-
+  # http://railscasts.com/episodes/219-active-model?view=asciicast
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming

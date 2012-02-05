@@ -7,10 +7,6 @@ describe Number do
     Number.new(params).number.should == '123'
   end
   
-  it 'can convert' do
-    Number.new(:number => 12).converted_number.should eq('twelve')
-  end
-  
   it 'converts numbers to strings properly' do
     input = [7, 42, 2001, 1999]
     expected = ['seven', 'forty-two', 'two thousand and one', 'nineteen hundred and ninety-nine']
@@ -19,11 +15,8 @@ describe Number do
     end
   end
   
-  it 'only accepts proper numbers 1.' do
+  it 'only accepts proper numbers' do
     Number.new(number: "asd123").should_not be_valid
-  end
-  
-  it 'only accepts proper numbers 2.' do
     Number.new(number: "123asd").should_not be_valid
   end
 end
