@@ -8,7 +8,7 @@ class Number # < ActiveRecord::Base
   attr_accessor :number
 
   validates :number, :presence => true
-  validates :number, :numericality => { :only_integer => true }
+  validates :number, :numericality => { :only_integer => true, :message => ": \"%{value}\" is not a number" }
   
   def converted_number
     # Timothy Byrd's solution, which can be found at: 
