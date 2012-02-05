@@ -1,7 +1,7 @@
 <%= form_for(@number, :url => numbers_convert_path, :method => :get) do |f| %>
   <% if @number.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@number.errors.count, "error") %> prohibited this number from being saved:</h2>
+      <h2><%= pluralize(@number.errors.count, "error") %> prohibited this number from being converted:</h2>
 
       <ul>
       <% @number.errors.full_messages.each do |msg| %>
