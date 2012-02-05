@@ -1,4 +1,12 @@
-class Number < ActiveRecord::Base
+class Number # < ActiveRecord::Base
+# http://railscasts.com/episodes/219-active-model?view=asciicast
+
+  include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
+  
+  attr_accessor :number
+
   validates :number, :presence => true
   validates :number, :numericality => { :only_integer => true }
   
@@ -10,6 +18,20 @@ class Number < ActiveRecord::Base
     # vagy nem hasznalta az "and" szocskat.
     
     EnglishNumerals.to_English(number)
+  end
+  
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
+  end
+  
+  def persisted?
+    false
+  end
+  
+  def new_record?
+    true
   end
 end
 

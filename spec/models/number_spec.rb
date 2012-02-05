@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Number do
+  # Number is no longer an ActiveRecord, therefore this needs to be checked
+  it 'initializes properly' do
+    params = { :number => '123' }
+    Number.new(params).number.should == '123'
+  end
+  
   it 'can convert' do
     Number.new(:number => 12).converted_number.should eq('twelve')
   end
