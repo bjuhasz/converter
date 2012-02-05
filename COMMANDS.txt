@@ -1,0 +1,5 @@
+
+rails s -u
+bundle exec spork cuc
+bundle exec spork -p 8900 rspec
+bundle exec guard
